@@ -13,14 +13,12 @@ public class SimpleInventario {
         System.out.println("Removido");
 
     }
-    public static String obtenerPrecioArticulo (String articulo, double precio) {
-        double formula = (Math.random() * 5000) + 100;
-        if (articulo.startsWith("mar") && precio >= 0.00) {
-            return "articulo" + articulo + "Tiene un valor de RD$" + (Math.random() * 5000) + 100;
-        } else if (articulo.startsWith("tab") || precio >= 12000.00) {
-        return articulo + "Tiene un valor que sobre pasa los 12000.00" + formula;
-    } else {
-            return "Ninguno de los escnarios pudo aplicar";
+    public static double obtenerPrecioArticulo () {
+        double precio = (Math.random() * 5000) + 100;
+        if (precio > 0) {
+            return precio;
+        } else {
+            return -1;
         }
     }
 
@@ -36,8 +34,30 @@ public class SimpleInventario {
         return nombre;
 
     }
+    public static void modificarArticulo(){
+           String nombre = obtenerNombreArticulo();
+        double precio = (Math.random() * 5000) + 100;
+           if (nombre.startsWith("A") || nombre.startsWith("D")) {
+               if (precio > 150 && precio <= 250)
+               {
+                   precio = precio + (precio * 0.02);
+                   System.out.println(nombre + precio);
+               } else if (precio > 250 && precio <= 500) {
+                   precio = precio + (precio * 0.08);
+                   System.out.println(nombre + precio);
+               } else {
+                   precio = precio + (precio * 0.12);
+                   System.out.println(nombre + precio);
+               }
+           } else if (nombre.startsWith("C") || nombre.startsWith("M")) {
+               precio = precio - (precio * 0.20);
+               System.out.println(nombre + precio);
+           }
 
-    public static void imprimirInventario() {
+    }
+
+
+        public static void imprimirInventario() {
         Scanner scanner = new Scanner(System. in);
         System.out.println("Ingrese su nombre");
         String usuario = scanner.nextLine();
