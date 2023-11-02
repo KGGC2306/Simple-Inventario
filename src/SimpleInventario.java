@@ -1,11 +1,13 @@
 import java.util.Scanner;
 public class SimpleInventario {
-    public static void agregarArticulo(String articulo) {
-        if (articulo.length() > 4) {
-            System.out.println("Articulo agregado exitosamente");
-        } else {
-            System.out.println("No se permite este articulo");
-        }
+    static String [] articulos = new String[5];
+    public static void agregarArticulo() {
+       int contador = 0;
+       while (contador < articulos.length) {
+           articulos [contador] = obtenerNombreArticulo();
+           contador ++;
+       }
+
     }
 
     public static void removerArticulo (int id) {
@@ -55,17 +57,19 @@ public class SimpleInventario {
            }
 
     }
-
-
         public static void imprimirInventario() {
         Scanner scanner = new Scanner(System. in);
         System.out.println("Ingrese su nombre");
         String usuario = scanner.nextLine();
         System.out.println("Bienvenido " + usuario);
         String articuloExistente = obtenerNombreArticulo();
-        System.out.println("Articulo existente " + articuloExistente);
+            System.out.println("Articulos registrados");
+            for (String articulo: articulos) {
+                System.out.println(articulo);
+            }
     }
     public static void main(String[] args) {
+        agregarArticulo();
         imprimirInventario();
     }
 }
